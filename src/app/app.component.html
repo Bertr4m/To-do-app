@@ -21,21 +21,21 @@
     <h3>Tasks for today</h3>
     <hr>
     <ul>
-      <li *ngFor="let x of todayList">{{ x }}</li>
+      <li *ngFor="let x of todayList; let i = index;">{{ x }} <input [(ngModel)]="todayListCheckbox[i]" type="checkbox"></li>
       
     </ul>
   </div>
   <div>
     <div class="buttons">
-      <button>⏩</button>
+      <button (click)="moveTomorrow()">⏩</button>
       <label> Tomorrow</label>
     </div>
     <div class="buttons">
-      <button>⏪</button>
+      <button (click)="moveToday()">⏪</button>
       <label> Today</label>
     </div>
     <div class="buttons">
-      <button>🗑</button>
+      <button (click)="moveOut()">🗑</button>
       <label> Delete</label>
     </div>
   </div>
@@ -43,8 +43,7 @@
     <h3>Tasks for tomorrow</h3>
     <hr>
     <ul>
-      <li *ngFor="let x of tomorrowList">{{ x }}</li>
-      
+      <li *ngFor="let x of tomorrowList; let i = index;"><input type="checkbox" [(ngModel)]="tomorrowListCheckbox[i]"> {{ x }}</li>
     </ul>
   </div>
 </section>
