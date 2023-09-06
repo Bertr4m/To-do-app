@@ -1,0 +1,50 @@
+<h1>To-Do App</h1>
+
+
+  <div class="form">
+    <input type="text"[(ngModel)]="dataInput" id="dataInput" placeholder="Describe task" [id]="dataInput">
+    <div>
+      <input type="checkbox" [(ngModel)]="forTodayCheck">
+      <label for="">Today</label>
+    </div>
+      <div>
+      <input type="checkbox" [(ngModel)]="forTomorrowCheck">
+      <label for="">Tomorrow</label>
+    </div>
+    <button (click)="load()">Save</button>
+  </div>
+    
+ 
+
+<section>
+  <div class="task-list">
+    <h3>Tasks for today</h3>
+    <hr>
+    <ul>
+      <li *ngFor="let x of todayList">{{ x }}</li>
+      
+    </ul>
+  </div>
+  <div>
+    <div class="buttons">
+      <button>⏩</button>
+      <label> Tomorrow</label>
+    </div>
+    <div class="buttons">
+      <button>⏪</button>
+      <label> Today</label>
+    </div>
+    <div class="buttons">
+      <button>🗑</button>
+      <label> Delete</label>
+    </div>
+  </div>
+  <div class="task-list">
+    <h3>Tasks for tomorrow</h3>
+    <hr>
+    <ul>
+      <li *ngFor="let x of tomorrowList">{{ x }}</li>
+      
+    </ul>
+  </div>
+</section>
