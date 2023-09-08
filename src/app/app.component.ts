@@ -16,24 +16,41 @@ export class AppComponent {
   todayList: string[] = [];
   tomorrowList: string[] = [];
 
-  load(){
-    if(this.forTodayCheck){
-      this.todayList.push(this.dataInput);
-      this.todayListCheckbox.push(false);
-    }
-
-    if(this.forTomorrowCheck){
-      this.tomorrowList.push(this.dataInput);
-      this.tomorrowListCheckbox.push(false);
+  load() {
+    if (this.dataInput) {
+      if (this.forTodayCheck) {
+        this.todayList.push(this.dataInput);
+        this.todayListCheckbox.push(false);
+      } else if (this.forTomorrowCheck) {
+        this.tomorrowList.push(this.dataInput);
+        this.tomorrowListCheckbox.push(false);
+      }
+      this.dataInput = '';
+      this.forTodayCheck = false;
+      this.forTomorrowCheck = false;
     }
   }
 
-  moveToday(){
-
+  moveToday() {
+    for (let i = this.tomorrowListCheckbox.length - 1; i >= 0; i--) {
+      if (this.tomorrowListCheckbox[i]) {
+        const taskToMove = this.tomorrowList.splice(i, 1)[0];
+        this.tomorrowListCheckbox.splice(i, 1);
+        this.todayList.push(taskToMove);
+        this.todayListCheckbox.push(false);
+      }
+    }
   }
-
-  moveTomorrow(){
-    
+  
+  moveTomorrow() {
+    for (let i = this.todayListCheckbox.length - 1; i >= 0; i--) {
+      if (this.todayListCheckbox[i]) {
+        const taskToMove = this.todayList.splice(i, 1)[0];
+        this.todayListCheckbox.splice(i, 1);
+        this.tomorrowList.push(taskToMove);
+        this.tomorrowListCheckbox.push(false);
+      }
+    }
   }
 
   moveOut(){
